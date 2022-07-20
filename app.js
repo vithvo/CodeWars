@@ -236,9 +236,9 @@ function printerError(s) {
   return `${bad.length}/${s.toLowerCase().length}`;
 }
 
-console.log(
-  printerError("aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyz")
-);
+// console.log(
+//   printerError("aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyz")
+// );
 
 // Best practice3
 
@@ -251,4 +251,246 @@ function printerError(s) {
     }
   }
   return count + "/" + s.length;
+}
+
+// 13. Write function bmi that calculates body mass index (bmi = weight / height2).
+// if bmi <= 18.5 return "Underweight"
+// if bmi <= 25.0 return "Normal"
+// if bmi <= 30.0 return "Overweight"
+// if bmi > 30 return "Obese"
+
+function bmi(weight, height) {
+  bmi = (weight / heigth) * height;
+  if (bmi <= 18.5) return "Underweight";
+  else if (bmi <= 25.0) return "Normal";
+  else if (bmi <= 30.0) return "Overweight";
+  else if (bmi > 30) return "Obese";
+}
+
+// Best practice
+
+// const bmi = (w, h, bmi = w / h / h) =>
+//   bmi <= 18.5
+//     ? "Underweight"
+//     : bmi <= 25
+//     ? "Normal"
+//     : bmi <= 30
+//     ? "Overweight"
+//     : "Obese";
+
+// 14. Given a set of numbers, return the additive inverse of each. Each positive becomes negatives, and the negatives become positives.
+
+function invert(array) {
+  negative = [];
+  for (i of array) {
+    z = -i;
+    negative.push(z);
+  }
+
+  return negative;
+}
+// console.log(invert([1, 2, 3, 4, 5]));
+
+// Best practice
+
+// function invert(array) {
+//   return array.map((x) => (x === 0 ? x : -x));
+// }
+
+// const invert = (array) => array.map((num) => -num);
+
+// 15. In DNA strings, symbols "A" and "T" are complements of each other, as "C" and "G". Your function receives one side of the DNA (string, except for Haskell); you need to return the other complementary side. DNA strand is never empty or there is no DNA at all (again, except for Haskell).
+
+function DNAStrand(dna) {
+  let arr = dna.split("");
+  let rec = [];
+  arr.map((i) => {
+    if (i === "A") {
+      i = "T";
+    } else if (i === "T") {
+      i = "A";
+    } else if (i === "C") {
+      i = "G";
+    } else if (i === "G") {
+      i = "C";
+    }
+
+    rec.push(i);
+    // console.log(rec);
+  });
+  return rec.join("");
+}
+
+// console.log(DNAStrand("ATTGC"));
+
+// Best practice
+
+// function DNAStrand(dna) {
+//   return dna.replace(/./g, function (c) {
+//     return DNAStrand.pairs[c];
+//   });
+// }
+
+// DNAStrand.pairs = {
+//   A: "T",
+//   T: "A",
+//   C: "G",
+//   G: "C",
+// };
+
+// Best practice
+
+// var pairs = { A: "T", T: "A", C: "G", G: "C" };
+
+// function DNAStrand(dna) {
+//   return dna
+//     .split("")
+//     .map(function (v) {
+//       return pairs[v];
+//     })
+//     .join("");
+// }
+
+// 16. Check to see if a string has the same amount of 'x's and 'o's. The method must return a boolean and be case insensitive. The string can contain any char.
+
+function XO(str) {
+  str = str.toLowerCase();
+  arr = str.split("");
+  if (!str.includes("o") && !str.includes("x")) {
+    return true;
+  }
+  let countx = 0;
+  let counto = 0;
+  arr.map((i) => {
+    if (i == "x") countx++;
+    else if (i == "o") counto++;
+  });
+
+  console.log(countx);
+
+  if (countx == counto) {
+    return true;
+  }
+  return false;
+}
+
+// console.log(XO("zzpp"));
+
+// Best practice
+
+// function XO(str) {
+//   let x = str.match(/x/gi);
+//   let o = str.match(/o/gi);
+//   return (x && x.length) === (o && o.length);
+// }
+
+// Best practice
+
+// const XO = (str) => {
+//   str = str.toLowerCase().split("");
+//   return (
+//     str.filter((x) => x === "x").length === str.filter((x) => x === "o").length
+//   );
+// };
+
+// Best practice
+
+// function XO(str) {
+//   return (
+//     str.toLowerCase().split("x").length === str.toLowerCase().split("o").length
+//   );
+// }
+
+// 17. Your task is to construct a building which will be a pile of n cubes. The cube at the bottom will have a volume of n^3, the cube above will have volume of (n-1)^3 and so on until the top which will have a volume of 1^3. You are given the total volume m of the building. Being given m can you find the number n of cubes you will have to build? The parameter of the function findNb (find_nb, find-nb, findNb, ...) will be an integer m and you have to return the integer n such as n^3 + (n-1)^3 + ... + 1^3 = m if such a n exists or -1 if there is no such n.
+
+function findNb(m) {
+  let n = 0;
+  let sum = 0;
+  while (sum < m) {
+    n++;
+    sum += Math.pow(n, 3);
+  }
+  return sum === m ? n : -1;
+}
+
+// console.log(findNb(1071225));
+
+// 18. There is a bus moving in the city, and it takes and drop some people in each bus stop. You are provided with a list (or array) of integer pairs. Elements of each pair represent number of people get into bus (The first item) and number of people get off the bus (The second item) in a bus stop. Your task is to return number of people who are still in the bus after the last bus station (after the last array). Even though it is the last bus stop, the bus is not empty and some people are still in the bus, and they are probably sleeping there :D Take a look on the test cases. Please keep in mind that the test cases ensure that the number of people in the bus is always >= 0. So the return integer can't be negative. The second value in the first integer array is 0, since the bus is empty in the first bus stop.
+
+let number = function (busStops) {
+  let numb = 0;
+  for (i of busStops) {
+    let num = i[0] - i[1];
+    numb += num;
+  }
+  return numb;
+};
+
+// console.log(
+//   number([
+//     [10, 0],
+//     [3, 5],
+//     [5, 8],
+//   ])
+// );
+
+// Best practice
+
+// const number = (busStops) =>
+//   busStops.reduce((rem, [on, off]) => rem + on - off, 0);
+
+// Best practice
+
+// var number = function (busStops) {
+//   var totalPeople = 0;
+//   for (var i = 0; i < busStops.length; i++) {
+//     totalPeople += busStops[i][0];
+//     totalPeople -= busStops[i][1];
+//   }
+//   return totalPeople;
+// };
+
+// 19. Given an array of integers, return a new array with each value doubled. For example:
+// [1, 2, 3] --> [2, 4, 6]
+
+// 20. Implement a function which convert the given boolean value into its string representation.
+
+function booleanToString(b) {
+  if (b) {
+    return "true";
+  } else return "false";
+}
+// console.log(maps([1, 2, 3]));
+
+// Best practice
+function booleanToString(b) {
+  return b.toString();
+}
+
+function booleanToString(b) {
+  return b ? "true" : "false";
+}
+
+// 21. In this little assignment you are given a string of space separated numbers, and have to return the highest and lowest number.
+
+function highAndLow(numbers) {
+  arr = numbers.split(" ").map((n) => Number(n));
+  max = Math.max(...arr);
+  min = Math.min(...arr);
+
+  return max + " " + min;
+}
+
+// console.log(highAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4"));
+
+// Best practice
+
+function highAndLow(numbers) {
+  numbers = numbers.split(" ").map(Number);
+  return Math.max.apply(0, numbers) + " " + Math.min.apply(0, numbers);
+}
+
+function highAndLow(numbers) {
+  numbers = numbers.split(" ");
+  return `${Math.max(...numbers)} ${Math.min(...numbers)}`;
 }
