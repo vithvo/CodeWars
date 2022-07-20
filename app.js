@@ -538,4 +538,4 @@ function tribonacci(signature, n) {
 
 // console.log(tribonacci([1, 1, 1], 10));
 
-// 23. 
+// 23.
