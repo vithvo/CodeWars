@@ -720,7 +720,7 @@ function squareDigits(num) {
 // 31. The goal of this exercise is to convert a string to a new string where each character in the new string is "(" if that character appears only once in the original string, or ")" if that character appears more than once in the original string. Ignore capitalization when determining if a character is a duplicate.
 
 function duplicateEncode(word) {
-  var unique = "";
+  let unique = "";
   word = word.toLowerCase();
   for (var i = 0; i < word.length; i++) {
     if (word.lastIndexOf(word[i]) == word.indexOf(word[i])) {
@@ -746,4 +746,56 @@ function duplicateEncode(word) {
     .join("");
 }
 
-// 32.
+// 32. Write a function that will return the count of distinct case-insensitive alphabetic characters and numeric digits that occur more than once in the input string. The input string can be assumed to contain only alphabets (both uppercase and lowercase) and numeric digits.
+
+function duplicateCount(text) {
+  let count = 0;
+  let arr = [];
+  text = text.toLowerCase();
+  for (let i = 0; i < text.length; i++) {
+    if (!(text.lastIndexOf(text[i]) == text.indexOf(text[i]))) {
+      arr.push(text[i]);
+    }
+  }
+  arr = new Set(arr);
+
+  return arr.size;
+}
+
+// console.log(duplicateCount("Indivisibdddilaaaity"));
+
+// Best practice
+
+function duplicateCount(text) {
+  return (
+    text
+      .toLowerCase()
+      .split("")
+      .sort()
+      .join("")
+      .match(/([^])\1+/g) || []
+  ).length;
+}
+
+function duplicateCount(text) {
+  return text
+    .toLowerCase()
+    .split("")
+    .filter(function (val, i, arr) {
+      return arr.indexOf(val) !== i && arr.lastIndexOf(val) === i;
+    }).length;
+}
+
+// 33. You just have to check if your number of building blocks is a perfect square.
+
+let isSquare = function (n) {
+  return Math.sqrt(n) % 1 === 0 ? true : false;
+};
+
+// console.log(isSquare(9));
+
+// Best practice
+
+function iSquare(n) {
+  return Math.sqrt(n) % 1 === 0;
+}
