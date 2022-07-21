@@ -538,4 +538,56 @@ function tribonacci(signature, n) {
 
 // console.log(tribonacci([1, 1, 1], 10));
 
-// 23.
+// 23. Make a function that will return a greeting statement that uses an input; your program should return, "Hello, <name> how are you doing today?". [Make sure you type the exact thing I wrote or the program may not execute properly]
+
+function greet(name) {
+  return `Hello, ${name} how are you doing today?`;
+}
+
+// 24. Nathan loves cycling. Because Nathan knows it is important to stay hydrated, he drinks 0.5 litres of water per hour of cycling. You get given the time in hours and you need to return the number of litres Nathan will drink, rounded to the smallest value.
+
+function litres(time) {
+  return Math.floor(time * 0.5);
+}
+
+// 25. In this kata you will create a function that takes a list of non-negative integers and strings and returns a new list with the strings filtered out.
+
+function filter_list(l) {
+  return l.filter((i) => typeof i == "number");
+}
+
+function filter_list(l) {
+  return l.filter(function (v) {
+    return typeof v == "number";
+  });
+}
+
+// console.log(filter_list([1, 2, "a", "b"]));
+
+// 26. Given an array of integers your solution should find the smallest integer. For example:
+// Given [34, 15, 88, 2] your solution will return 2
+// Given [34, -345, -1, 100] your solution will return -345
+// You can assume, for the purpose of this kata, that the supplied array will not be empty.
+
+class SmallestIntegerFinder {
+  findSmallestInt(args) {
+    return Math.min(...args);
+  }
+}
+
+// let smallest = new SmallestIntegerFinder();
+// console.log(smallest.findSmallestInt([78, 56, 232, 12, 99]));
+
+// same solution
+
+class SmallestIntegerFinde {
+  findSmallestInt(args) {
+    return Math.min.apply(null, args);
+  }
+}
+
+// 27. Given two integers a and b, which can be positive or negative, find the sum of all the integers between and including them and return it. If the two numbers are equal return a or b. Note: a and b are not ordered!
+
+function getSum(a, b) {
+  //Good luck!
+}
