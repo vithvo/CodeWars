@@ -799,3 +799,5 @@ let isSquare = function (n) {
 function iSquare(n) {
   return Math.sqrt(n) % 1 === 0;
 }
+
+
