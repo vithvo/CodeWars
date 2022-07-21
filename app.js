@@ -589,5 +589,161 @@ class SmallestIntegerFinde {
 // 27. Given two integers a and b, which can be positive or negative, find the sum of all the integers between and including them and return it. If the two numbers are equal return a or b. Note: a and b are not ordered!
 
 function getSum(a, b) {
-  //Good luck!
+  x = Math.min(a, b);
+  y = Math.max(a, b);
+  console.log(y);
+  let sum = 0;
+  for (x; x <= y; x++) {
+    sum += x;
+  }
+  return sum;
 }
+
+// console.log(getSum(2, -3));
+
+// Best practice
+
+const GetS = (a, b) => {
+  let min = Math.min(a, b),
+    max = Math.max(a, b);
+  return ((max - min + 1) * (min + max)) / 2;
+};
+
+function GetSu(a, b) {
+  if (a == b) return a;
+  else if (a < b) return a + GetSum(a + 1, b);
+  else return a + GetSum(a - 1, b);
+}
+
+function GetSum(a, b) {
+  return ((Math.abs(a - b) + 1) * (a + b)) / 2;
+}
+
+// 28. You might know some pretty large perfect squares. But what about the NEXT one? Complete the findNextSquare method that finds the next integral perfect square after the one passed as a parameter. Recall that an integral perfect square is an integer n such that sqrt(n) is also an integer. If the parameter is itself not a perfect square then -1 should be returned. You may assume the parameter is non-negative.
+
+function findNextSquare(sq) {
+  let n = Math.sqrt(sq);
+  if (Number.isInteger(n)) return Math.pow(n + 1, 2);
+  return -1;
+}
+
+// console.log(findNextSquare(120));
+
+// Best practice
+
+function findNextSquare(sq) {
+  return Math.sqrt(sq) % 1 ? -1 : Math.pow(Math.sqrt(sq) + 1, 2);
+}
+
+function findNextSquare(sq) {
+  var number = Math.sqrt(sq);
+  if (Math.round(number) === number) {
+    return Math.pow(++number, 2);
+  }
+  return -1;
+}
+
+// 29. Build a pyramid-shaped tower given a positive integer number of floors. A tower block is represented with "*" character.
+
+function towerBuilder(nFloors) {
+  x = [];
+  for (i = 0; i < nFloors; i++) {
+    x[i] =
+      " ".repeat(nFloors - i - 1) +
+      "*".repeat(i * 2 + 1) +
+      " ".repeat(nFloors - i - 1);
+  }
+  return x;
+}
+
+// console.log(towerBuilder(3));
+
+// Best practice
+
+function towerBuilder(n) {
+  return Array.from({ length: n }, function (v, k) {
+    const spaces = " ".repeat(n - k - 1);
+    return spaces + "*".repeat(k + k + 1) + spaces;
+  });
+}
+
+function towerBuilder(nFloors) {
+  var tower = [];
+  for (var i = 0; i < nFloors; i++) {
+    tower.push(
+      " ".repeat(nFloors - i - 1) +
+        "*".repeat(i * 2 + 1) +
+        " ".repeat(nFloors - i - 1)
+    );
+  }
+  return tower;
+}
+
+function towerBuilder(n) {
+  return [...Array(n)].map(
+    (_, i) =>
+      " ".repeat(n - 1 - i) + "*".repeat(i * 2 + 1) + " ".repeat(n - 1 - i)
+  );
+}
+
+// 30. Welcome. In this kata, you are asked to square every digit of a number and concatenate them. For example, if we run 9119 through the function, 811181 will come out, because 92 is 81 and 12 is 1. Note: The function accepts an integer and returns an integer
+
+function squareDigits(num) {
+  arr = num.toString().split("");
+  pow = arr.map((a) => a * a);
+  return +pow.join("");
+}
+
+// console.log(squareDigits(3212));
+
+// Best practice
+
+function squareDigits(num) {
+  return Number(
+    ("" + num)
+      .split("")
+      .map(function (val) {
+        return val * val;
+      })
+      .join("")
+  );
+}
+
+function squareDigits(num) {
+  return +num
+    .toString()
+    .split("")
+    .map((i) => i * i)
+    .join("");
+}
+
+// 31. The goal of this exercise is to convert a string to a new string where each character in the new string is "(" if that character appears only once in the original string, or ")" if that character appears more than once in the original string. Ignore capitalization when determining if a character is a duplicate.
+
+function duplicateEncode(word) {
+  var unique = "";
+  word = word.toLowerCase();
+  for (var i = 0; i < word.length; i++) {
+    if (word.lastIndexOf(word[i]) == word.indexOf(word[i])) {
+      unique += "(";
+    } else {
+      unique += ")";
+    }
+  }
+  return unique;
+}
+
+// console.log(duplicateEncode("Success"));
+
+// Best practice
+
+function duplicateEncode(word) {
+  return word
+    .toLowerCase()
+    .split("")
+    .map(function (a, i, w) {
+      return w.indexOf(a) == w.lastIndexOf(a) ? "(" : ")";
+    })
+    .join("");
+}
+
+// 32.
