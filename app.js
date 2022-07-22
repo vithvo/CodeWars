@@ -885,12 +885,21 @@ function order(words) {
 // 37. Given a string of words, you need to find the highest scoring word. Each letter of a word scores points according to its position in the alphabet: a = 1, b = 2, c = 3 etc. You need to return the highest scoring word as a string. If two words score the same, return the word that appears earliest in the original string. All letters will be lowercase and all inputs will be valid.
 
 function high(x) {
-  ar = [];
-  arr = x.split(" ");
-  for (i = 0; i < length.arr; i++) {
+  let arr = x.split(" ");
+  let ar = [];
+  let b = "";
+  for (i = 0; i < arr.length; i++) {
     ar = arr[i].split("");
-    console.log(ar);
+    for (j = 0; j < ar.length; j++) {
+      b = ar[j].charCodeAt() - 91;
+      ar[j] = b;
+    }
+		console.log(ar
+			);
+
+    // console.log(ar);
   }
+  return 1;
 }
 
 console.log(high("man i need a taxi up to ubud"));
