@@ -800,4 +800,61 @@ function iSquare(n) {
   return Math.sqrt(n) % 1 === 0;
 }
 
+// 34. In this kata you are required to, given a string, replace every letter with its position in the alphabet. If anything in the text isn't a letter, ignore it and don't return it.
 
+function alphabetPosition(text) {
+  arr = text.toLowerCase().split("");
+  let filtArr = arr.filter((c) => {
+    if (c >= "a" && c <= "z") return c;
+  });
+  let result = filtArr.map((i) => {
+    return i.charCodeAt(0) - 96;
+  });
+  return result.join(" ");
+}
+// console.log(alphabetPosition("The sunset sets at twelve o' clock."));
+
+// Best practice
+
+function alphabetPosition(text) {
+  return text
+    .toUpperCase()
+    .match(/[a-z]/gi)
+    .map((c) => c.charCodeAt() - 64)
+    .join(" ");
+}
+
+function alphabetPosition(text) {
+  var result = "";
+  for (var i = 0; i < text.length; i++) {
+    var code = text.toUpperCase().charCodeAt(i);
+    if (code > 64 && code < 91) result += code - 64 + " ";
+  }
+
+  return result.slice(0, result.length - 1);
+}
+
+// 35. In this simple assignment you are given a number and have to make it negative. But maybe the number is already negative?
+
+function makeNegative(num) {
+  if (num < 0) return num;
+  else return -num;
+}
+
+// console.log(makeNegative(-5));
+
+// Best practice
+
+function makeNegative(num) {
+  return -Math.abs(num);
+}
+
+function makeNegative(num) {
+  return num < 0 ? num : -num;
+}
+
+// 36. Your task is to sort a given string. Each word in the string will contain a single number. This number is the position the word should have in the result. Note: Numbers can be from 1 to 9. So 1 will be the first word (not 0). If the input string is empty, return an empty string. The words in the input String will only contain valid consecutive numbers.
+
+function order(words) {
+	
+}
