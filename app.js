@@ -856,5 +856,41 @@ function makeNegative(num) {
 // 36. Your task is to sort a given string. Each word in the string will contain a single number. This number is the position the word should have in the result. Note: Numbers can be from 1 to 9. So 1 will be the first word (not 0). If the input string is empty, return an empty string. The words in the input String will only contain valid consecutive numbers.
 
 function order(words) {
-	
+  let array = words.split(" ");
+  let sortedArray = [];
+  for (i = 0; i <= array.length; i++) {
+    for (j = 0; j < array.length; j++) {
+      if (array[j].indexOf(i) >= 0) {
+        sortedArray.push(array[j]);
+        console.log(sortedArray);
+      }
+    }
+  }
+  return sortedArray.join(" ");
 }
+
+// console.log(order("is2 Thi1s T4est 3a"));
+
+// Best practice
+
+function order(words) {
+  return words
+    .split(" ")
+    .sort(function (a, b) {
+      return a.match(/\d/) - b.match(/\d/);
+    })
+    .join(" ");
+}
+
+// 37. Given a string of words, you need to find the highest scoring word. Each letter of a word scores points according to its position in the alphabet: a = 1, b = 2, c = 3 etc. You need to return the highest scoring word as a string. If two words score the same, return the word that appears earliest in the original string. All letters will be lowercase and all inputs will be valid.
+
+function high(x) {
+  ar = [];
+  arr = x.split(" ");
+  for (i = 0; i < length.arr; i++) {
+    ar = arr[i].split("");
+    console.log(ar);
+  }
+}
+
+console.log(high("man i need a taxi up to ubud"));
