@@ -894,12 +894,106 @@ function high(x) {
       b = ar[j].charCodeAt() - 91;
       ar[j] = b;
     }
-		console.log(ar
-			);
+    console.log(ar);
 
     // console.log(ar);
   }
   return 1;
 }
 
-console.log(high("man i need a taxi up to ubud"));
+// console.log(high("man i need a taxi up to ubud"));
+
+// 38. Given two arrays a and b write a function comp(a, b) (orcompSame(a, b)) that checks whether the two arrays have the "same" elements, with the same multiplicities (the multiplicity of a member is the number of times it appears). "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.
+
+function comp(array1, array2) {
+  if (array1 == null || array2 == null) return false;
+  else {
+    array1Sort = array1.sort((a, b) => {
+      return a - b;
+    });
+    array2Sort = array2.sort((a, b) => {
+      return a - b;
+    });
+    array2Sort = array2Sort.map((i) => (i = Math.sqrt(i)));
+    console.log(array1Sort, array2Sort);
+
+    return array1Sort.every((i, j) => {
+      return i == array2Sort[j];
+    });
+  }
+}
+
+a1 = [121, 144, 19, 161, 19, 144, 19, 11];
+a2 = [
+  11 * 11,
+  121 * 121,
+  144 * 144,
+  19 * 19,
+  161 * 161,
+  19 * 19,
+  144 * 144,
+  19 * 19,
+];
+// console.log(comp(a1, a2));
+
+// Best practice
+
+function comp(array1, array2) {
+  if (array1 == null || array2 == null) return false;
+  array1.sort((a, b) => a - b);
+  array2.sort((a, b) => a - b);
+  return array1.map((v) => v * v).every((v, i) => v == array2[i]);
+}
+
+const com = (array1, array2) =>
+  Array.isArray(array1) &&
+  Array.isArray(array2) &&
+  array1.every((item) => {
+    const index = array2.indexOf(Math.pow(item, 2));
+    return index > -1 ? array2.splice(index, 1) : false;
+  });
+
+function comp(a, b) {
+  return (
+    !!a &&
+    !!b &&
+    a
+      .map((x) => x * x)
+      .sort()
+      .join() == b.sort().join()
+  );
+}
+
+// 39. Enough is enough! lice and Bob were on a holiday. Both of them took many pictures of the places they've been, and now they want to show Charlie their entire collection. However, Charlie doesn't like these sessions, since the motif usually repeats. He isn't fond of seeing the Eiffel tower 40 times. e tells them that he will only sit for the session if they show the same motif at most N times. Luckily, Alice and Bob are able to encode the motif as a number. Can you help them to remove numbers such that their list contains each number only up to N times, without changing the order?
+// Task
+// Given a list and a number, create a new list that contains each number of list at most N times, without reordering.
+// For example if the input number is 2, and the input list is [1,2,3,1,2,1,2,3], you take [1,2,3,1,2], drop the next [1,2] since this would lead to 1 and 2 being in the result 3 times, and then take 3, which leads to [1,2,3,1,2,3].
+// With list [20,37,20,21] and number 1, the result would be [20,37,21].
+
+function deleteNth(arr, x) {
+  let cache = {};
+  return arr.filter(function (n) {
+    cache[n] = (cache[n] || 0) + 1;
+
+    return cache[n] <= x;
+  });
+}
+// console.log(deleteNth([20, 37, 20, 21], 1));
+
+// 40. Create a function that returns the sum of the two lowest positive numbers given an array of minimum 4 positive integers. No floats or non-positive integers will be passed. For example, when an array is passed like [19, 5, 42, 2, 77], the output should be 7. [10, 343445353, 3453445, 3453545353453] should return 3453455.
+
+function sumTwoSmallestNumbers(numbers) {
+  numbers = numbers.sort((a, b) => a - b);
+  return (sum = numbers[0] + numbers[1]);
+}
+
+console.log(sumTwoSmallestNumbers([5, 8, 12, 19, 22]));
+
+// Best practice
+
+function sumTwoSmallestNumbers(numbers) {  
+  numbers.sort((a,b) => a - b);
+  return numbers[0] + numbers[1];
+};
+
+// 41. 
