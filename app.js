@@ -1003,28 +1003,15 @@ function longestConsec(strarr, k) {
     return "";
   } else {
     let arr = [];
-    strarr.map((i, k) => {
-      n = strarr[k + 1];
-      console.log(n.typeOf);
-      if (!(i.length == n.length)) {
-        arr.push(i);
-      }
+    strarr.sort((i, k) => {
+      i.length - k.length;
     });
 
-    console.log(arr);
-    strarr = strarr.toString().split(",");
-    let maxStrarr = strarr.slice(0).sort((a, b) => b.length - a.length);
-    let result = [];
-    for (i = 0; i < k; i++) {
-      arr.push(maxStrarr[i]);
-    }
-    console.log(strarr);
-    for (i of strarr) {
-      if (arr.includes(i)) {
-        result.push(i);
-      }
-    }
-    return result.join("");
+    strarr.map((i, j) => {
+      arr.push(strarr[strarr.length - 1 - j]);
+    });
+
+    return arr;
   }
 }
 
