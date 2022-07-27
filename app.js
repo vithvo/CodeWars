@@ -987,13 +987,45 @@ function sumTwoSmallestNumbers(numbers) {
   return (sum = numbers[0] + numbers[1]);
 }
 
-console.log(sumTwoSmallestNumbers([5, 8, 12, 19, 22]));
+// console.log(sumTwoSmallestNumbers([5, 8, 12, 19, 22]));
 
 // Best practice
 
-function sumTwoSmallestNumbers(numbers) {  
-  numbers.sort((a,b) => a - b);
+function sumTwoSmallestNumbers(numbers) {
+  numbers.sort((a, b) => a - b);
   return numbers[0] + numbers[1];
-};
+}
 
-// 41. 
+// 41. You are given an array(list) strarr of strings and an integer k. Your task is to return the first longest string consisting of k consecutive strings taken in the array.
+
+function longestConsec(strarr, k) {
+  if (strarr.length == 0 || k <= 0 || k > strarr.length) {
+    return "";
+  } else {
+    let arr = [];
+    strarr.map((i, k) => {
+      n = strarr[k + 1];
+      console.log(n.typeOf);
+      if (!(i.length == n.length)) {
+        arr.push(i);
+      }
+    });
+
+    console.log(arr);
+    strarr = strarr.toString().split(",");
+    let maxStrarr = strarr.slice(0).sort((a, b) => b.length - a.length);
+    let result = [];
+    for (i = 0; i < k; i++) {
+      arr.push(maxStrarr[i]);
+    }
+    console.log(strarr);
+    for (i of strarr) {
+      if (arr.includes(i)) {
+        result.push(i);
+      }
+    }
+    return result.join("");
+  }
+}
+
+console.log(longestConsec(["it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz"], 3));
