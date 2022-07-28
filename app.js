@@ -1015,7 +1015,7 @@ function longestConsec(strarr, k) {
   }
 }
 
-console.log(longestConsec(["it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz"], 3));
+// console.log(longestConsec(["it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz"], 3));
 
 // Best practice
 
@@ -1030,3 +1030,50 @@ function longestConsec(strarr, k) {
   }
   return longest;
 }
+
+// 41. Given a non-empty array of integers, return the result of multiplying the values together in order. Example:
+
+function grow(x) {
+  return (arr = x.reduce((a, b) => a * b));
+}
+
+// console.log(grow([1, 2, 3]));
+
+// Imperative method
+
+const gro = (x) => {
+  let res = 1;
+  for (let i = 0; i < x.length; i++) {
+    res *= x[i];
+  }
+  return res;
+};
+
+// 42. We need a function that can transform a number (integer) into a string. What ways of achieving this do you know?
+
+function numberToString(num) {
+  return num.toString();
+}
+
+// console.log(numberToString(-100));
+
+// another solution
+
+const numberToStrin = (num) => `${num}`;
+
+// 43. Write a function that takes an array of numbers and returns the sum of the numbers. The numbers can be negative or non-integer. If the array does not contain any numbers then you should return 0.
+
+function sum(numbers) {
+  return numbers.length == 0 ? 0 : numbers.reduce((a, b) => a + b);
+}
+
+console.log(sum([]));
+
+// Best practice
+
+function sum(numbers) {
+  return numbers.reduce((a, b) => a + b, 0);
+}
+
+// 44. Implement a function that adds two numbers together and returns their sum in binary. The conversion can be done before, or after the addition. The binary number returned should be a string. Examples:(Input1, Input2 --> Output (explanation)))
+
