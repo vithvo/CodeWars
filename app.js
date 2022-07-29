@@ -998,28 +998,28 @@ function sumTwoSmallestNumbers(numbers) {
 
 // 41. You are given an array(list) strarr of strings and an integer k. Your task is to return the first longest string consisting of k consecutive strings taken in the array.
 
-function longestConsec(strarr, k) {
-  if (strarr.length == 0 || k <= 0 || k > strarr.length) {
-    return "";
-  } else {
-    let arr = [];
-    strarr.sort((i, k) => {
-      i.length - k.length;
-    });
+// function longestConsec(strarr, k) {
+//   if (strarr.length == 0 || k <= 0 || k > strarr.length) {
+//     return "";
+//   } else {
+//     let arr = [];
+//     strarr.sort((i, k) => {
+//       i.length - k.length;
+//     });
 
-    strarr.map((i, j) => {
-      arr.push(strarr[strarr.length - 1 - j]);
-    });
+//     strarr.map((i, j) => {
+//       arr.push(strarr[strarr.length - 1 - j]);
+//     });
 
-    return arr;
-  }
-}
+//     return arr;
+//   }
+// }
 
-// console.log(longestConsec(["it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz"], 3));
+// console.log(longestConsecs(["it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz"], 3));
 
 // Best practice
 
-function longestConsec(strarr, k) {
+function longestConsecs(strarr, k) {
   var longest = "";
   for (var i = 0; k > 0 && i <= strarr.length - k; i++) {
     var tempArray = strarr.slice(i, i + k);
@@ -1030,6 +1030,7 @@ function longestConsec(strarr, k) {
   }
   return longest;
 }
+// console.log(longestConsecs(["a", "kjasfhk", "a", "wabcd", "abc"], 2));
 
 // 41. Given a non-empty array of integers, return the result of multiplying the values together in order. Example:
 
@@ -1067,7 +1068,7 @@ function sum(numbers) {
   return numbers.length == 0 ? 0 : numbers.reduce((a, b) => a + b);
 }
 
-console.log(sum([]));
+// console.log(sum([]));
 
 // Best practice
 
@@ -1077,3 +1078,155 @@ function sum(numbers) {
 
 // 44. Implement a function that adds two numbers together and returns their sum in binary. The conversion can be done before, or after the addition. The binary number returned should be a string. Examples:(Input1, Input2 --> Output (explanation)))
 
+function addBinary(a, b) {
+  c = a + b;
+  console.log(c);
+  return c.toString(2);
+}
+// console.log(addBinary(5, 9));
+
+// 45. You are going to be given an array of integers. Your job is to take that array and find an index N where the sum of the integers to the left of N is equal to the sum of the integers to the right of N. If there is no index that would make this happen, return -1.
+
+function findEvenIndex(arr) {
+  let arrb = [];
+  let arra = [];
+  let res;
+  arr.map((_, k) => {
+    arra = arr.slice(k + 1);
+    arrb = arr.slice(0, k);
+
+    let arras = arra.reduce((a, b) => a + b, 0);
+    let arrbs = arrb.reduce((a, b) => a + b, 0);
+    if (arras == arrbs) {
+      return (res = k);
+    }
+  });
+  return res ? res : res == 0 ? 0 : -1;
+}
+// console.log(findEvenIndex([20, 10, -80, 10, 10, 15, 35]));
+
+// Best practice
+
+function findEvenIndex(arr) {
+  var left = 0,
+    right = arr.reduce(function (pv, cv) {
+      return pv + cv;
+    }, 0);
+  for (var i = 0; i < arr.length; i++) {
+    if (i > 0) left += arr[i - 1];
+    right -= arr[i];
+
+    if (left == right) return i;
+  }
+
+  return -1;
+}
+
+// /////////////////
+
+const summ = (a, from, to) => a.slice(from, to).reduce((a, b) => a + b, 0);
+const findEvenIndexx = (a) =>
+  a.findIndex((el, i) => sum(a, 0, i) === sum(a, i + 1));
+
+// 46. This kata is about multiplying a given number by eight if it is an even number and by nine otherwise.
+
+function simpleMultiplication(number) {
+  if (number % 2 == 0) {
+    return number * 8;
+  }
+  return number * 9;
+}
+
+// console.log(simpleMultiplication(2));
+// console.log(simpleMultiplication(3));
+
+// Best practice
+
+function simpleMultiplication(n) {
+  return n * (n % 2 ? 9 : 8);
+}
+
+// 47. Complete the square sum function so that it squares each number passed into it and then sums the results together. For example, for [1, 2, 2] it should return 9 because 1^2 + 2^2 + 2^2 = 9.
+
+function squareSum(numbers) {
+  return numbers.map((a) => (a = a ** 2)).reduce((a, b) => a + b, 0);
+}
+
+// console.log(squareSum([0, 3, 4, 5]));
+
+// Best practice
+
+function squareSum(numbers) {
+  return numbers.reduce((sum, num) => sum + num * num, 0);
+}
+
+// 48. Create a function with two arguments that will return an array of the first (n) multiples of (x). Assume both the given number and the number of times to count will be positive numbers greater than 0. Return the results as an array (or list in Python, Haskell or Elixir). Examples:
+
+// countBy(1,10) === [1,2,3,4,5,6,7,8,9,10]
+// countBy(2,5) === [2,4,6,8,10]
+
+function countBy(x, n) {
+  let a = [];
+  for (i = 1; i <= n; i++) {
+    a.push(i * x);
+  }
+  return a;
+}
+
+// console.log(countBy(1, 5));
+
+// Best practice
+
+const countB = (x, n) => Array.from({ length: n }, (v, k) => (k + 1) * x);
+
+const counBy = (x, n) => [...Array(n)].map((_, idx) => ++idx * x);
+
+// 49. Take an array and remove every second element from the array. Always keep the first element and start removing with the next element. None of the arrays will be empty, so you don't have to worry about that! Example:
+// ["Keep", "Remove", "Keep", "Remove", "Keep", ...] --> ["Keep", "Keep", "Keep", ...]
+
+function removeEveryOther(arr) {
+  let a = [];
+  arr.map((i, j) => {
+    if (j % 2 == 0) {
+      a.push(i);
+    }
+    return arr;
+  });
+  return a;
+}
+
+// console.log(removeEveryOther(["Hello", "Goodbye", "Hello Again"]));
+
+// Best practice
+
+function removeEveryOther(arr) {
+  return arr.filter(function (elem, index) {
+    return index % 2 === 0;
+  });
+}
+
+// 50. Given a list of integers, determine whether the sum of its elements is odd or even. Give your answer as a string matching "odd" or "even". If the input array is empty consider it as: [0] (array with a zero).
+
+function oddOrEven(array) {
+  return array.reduce((a, b) => a + b, 0) % 2 == 0 ? "even" : "odd";
+}
+
+// console.log(oddOrEven([1, 1, 5]));
+
+// 51. Timmy & Sarah think they are in love, but around where they live, they will only know once they pick a flower each. If one of the flowers has an even number of petals and the other has an odd number of petals it means they are in love. Write a function that will take the number of petals of each flower and return true if they are in love and false if they aren't.
+
+function lovefunc(flower1, flower2) {
+  return (flower1 + flower2) % 2 == 0 ? false : true;
+}
+
+// console.log(lovefunc(1, 4));
+
+// Best practice
+
+function lovefunc(flower1, flower2) {
+  return flower1 % 2 !== flower2 % 2;
+}
+
+const lovefun = (Ͼ, Ͽ) => !!((Ͼ & 1) ^ (1 & Ͽ));
+
+// 52. 
