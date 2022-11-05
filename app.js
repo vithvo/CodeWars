@@ -648,10 +648,7 @@ function findNextSquare(sq) {
 function towerBuilder(nFloors) {
   x = [];
   for (i = 0; i < nFloors; i++) {
-    x[i] =
-      " ".repeat(nFloors - i - 1) +
-      "*".repeat(i * 2 + 1) +
-      " ".repeat(nFloors - i - 1);
+    x[i] = " ".repeat(nFloors - i - 1) + "*".repeat(i * 2 + 1) + " ".repeat(nFloors - i - 1);
   }
   return x;
 }
@@ -670,19 +667,14 @@ function towerBuilder(n) {
 function towerBuilder(nFloors) {
   var tower = [];
   for (var i = 0; i < nFloors; i++) {
-    tower.push(
-      " ".repeat(nFloors - i - 1) +
-        "*".repeat(i * 2 + 1) +
-        " ".repeat(nFloors - i - 1)
-    );
+    tower.push(" ".repeat(nFloors - i - 1) + "*".repeat(i * 2 + 1) + " ".repeat(nFloors - i - 1));
   }
   return tower;
 }
 
 function towerBuilder(n) {
   return [...Array(n)].map(
-    (_, i) =>
-      " ".repeat(n - 1 - i) + "*".repeat(i * 2 + 1) + " ".repeat(n - 1 - i)
+    (_, i) => " ".repeat(n - 1 - i) + "*".repeat(i * 2 + 1) + " ".repeat(n - 1 - i)
   );
 }
 
@@ -924,16 +916,7 @@ function comp(array1, array2) {
 }
 
 a1 = [121, 144, 19, 161, 19, 144, 19, 11];
-a2 = [
-  11 * 11,
-  121 * 121,
-  144 * 144,
-  19 * 19,
-  161 * 161,
-  19 * 19,
-  144 * 144,
-  19 * 19,
-];
+a2 = [11 * 11, 121 * 121, 144 * 144, 19 * 19, 161 * 161, 19 * 19, 144 * 144, 19 * 19];
 // console.log(comp(a1, a2));
 
 // Best practice
@@ -1125,8 +1108,7 @@ function findEvenIndex(arr) {
 // /////////////////
 
 const summ = (a, from, to) => a.slice(from, to).reduce((a, b) => a + b, 0);
-const findEvenIndexx = (a) =>
-  a.findIndex((el, i) => sum(a, 0, i) === sum(a, i + 1));
+const findEvenIndexx = (a) => a.findIndex((el, i) => sum(a, 0, i) === sum(a, i + 1));
 
 // 46. This kata is about multiplying a given number by eight if it is an even number and by nine otherwise.
 
@@ -1291,41 +1273,253 @@ function findShort(s) {
 // Example
 // wave("hello") => ["Hello", "hEllo", "heLlo", "helLo", "hellO"]
 
-function wave(str) {
-  let ind = [];
-  str = str.toLowerCase();
-  str = str.split("").map((i, k) => {
-    if (i == " ") {
-      ind.push(k);
-    }
-    return (i = str);
-  });
-  let arr = str.map((i, k) => {
-    i = i.split("");
-    i.splice(k, 1, i[k].toUpperCase());
-    return (i = i.join(""));
-  });
-  res = arr.filter((_, i) => {
-    return !ind.includes(i);
-  });
-  return res;
-}
+// function wave(str) {
+//   let ind = [];
+//   str = str.toLowerCase();
+//   str = str.split("").map((i, k) => {
+//     if (i == " ") {
+//       ind.push(k);
+//     }
+//     return (i = str);
+//   });
+//   let arr = str.map((i, k) => {
+//     i = i.split("");
+//     i.splice(k, 1, i[k].toUpperCase());
+//     return (i = i.join(""));
+//   });
+//   res = arr.filter((_, i) => {
+//     return !ind.includes(i);
+//   });
+//   return res;
+// }
 
+// // Best practice
 
-// Best practice
+// function wave(str) {
+// 	let result = [];
 
-function wave(str) {
-	let result = [];
-	
-  str.split("").forEach((char, index) => {
-		if (/[a-z]/.test(char)) {
-			result.push(
-				str.slice(0, index) + char.toUpperCase() + str.slice(index + 1)
-				);
-			}
-		});
-		
-		return result;
-	}
-	
-	console.log(wave("Hello HEllo"));
+//   str.split("").forEach((char, index) => {
+// 		if (/[a-z]/.test(char)) {
+// 			result.push(
+// 				str.slice(0, index) + char.toUpperCase() + str.slice(index + 1)
+// 				);
+// 			}
+// 		});
+
+// 		return result;
+// 	}
+
+// 	console.log(wave("Hello HEllo"));
+
+// // 55. Implement the function unique_in_order which takes as argument a sequence and returns a list of items without any elements with the same value next to each other and preserving the original order of elements.
+
+// var uniqueInOrder = function (iterable) {
+//   const result = [];
+
+//   [...iterable].map((item, i) => {
+//     if (iterable[i] === iterable[i + 1]) {
+//       i++;
+//     } else result.push(item);
+//   });
+//   return result;
+// };
+
+// console.log(uniqueInOrder([1, 2, 2, 3, 3]));
+
+// // // Best practice
+
+// var uniqueInOrder = function (iterable) {
+//   return [...iterable].filter((a, i) => a !== iterable[i - 1]);
+// };
+
+// // 56. Complete the function that accepts a string parameter, and reverses each word in the string. All spaces in the string should be retained.
+
+// function reverseWords(str) {
+//   return str.split(" ").map((word) => (word = word.split('').reverse().join(''))).join(' ');
+// }
+
+// console.log(reverseWords("elbuod  secaps"));
+
+// // 57. Complete the function so that it finds the average of the three scores passed to it and returns the letter value associated with that grade.
+
+// Numerical Score	Letter Grade
+// 90 <= score <= 100	'A'
+// 80 <= score < 90	'B'
+// 70 <= score < 80	'C'
+// 60 <= score < 70	'D'
+// 0 <= score < 60	'F'
+// Tested values are all between 0 and 100. Theres is no need to check for negative values or values greater than 100.
+
+// function getGrade(s1, s2, s3) {
+//   const score = (s1 + s2 + s3) / 3;
+//   if (90 <= score && score <= 100) return "A";
+//   if (80 <= score && score < 90) return "B";
+//   if (70 <= score && score < 80) return "C";
+//   if (60 <= score && score < 70) return "D";
+//   if (00 <= score && score < 60) return "F";
+// }
+
+// console.log(getGrade(95, 2, 93));
+
+// // // // Best practice
+
+// function getGrade(s1, s2, s3) {
+//   var s = (s1 + s2 + s3) / 3;
+//   return s >= 90 ? "A" : s >= 80 ? "B" : s >= 70 ? "C" : s >= 60 ? "D" : "F";
+// }
+
+// // 58. The number 89 is the first integer with more than one digit that fulfills the property partially introduced in the title of this kata. What's the use of saying "Eureka"? Because this sum gives the same number.
+
+// In effect: 89 = 8^1 + 9^2
+
+// The next number in having this property is 135.
+
+// See this property again: 135 = 1^1 + 3^2 + 5^3
+
+// We need a function to collect these numbers, that may receive two integers a, b that defines the range [a, b] (inclusive) and outputs a list of the sorted numbers in the range that fulfills the property described above.
+
+// Let's see some cases (input -> output):
+
+// function sumDigPow(a, b) {
+//   result = [];
+//   for (i = a; i <= b; i++) {
+//     sum = 0;
+//     [...i.toString()].map((n, ind) => {
+//       sum += Math.pow(n, ind + 1);
+//       i === sum && result.push(i);
+//     });
+//   }
+//   return result;
+// }
+
+// console.log(sumDigPow(11, 200));
+
+// 59.  Bob needs a fast way to calculate the volume of a cuboid with three values: the length, width and height of the cuboid. Write a function to help Bob with this calculation.
+
+// function sumArray(array) {
+//   return array
+//     ? array
+//         .sort((a, b) => a - b)
+//         .filter((_, i) => i !== 0 && i !== array.length - 1)
+//         .reduce((a, b) => a + b, 0)
+//     : 0;
+// }
+
+// console.log(sumArray([1, 1, 11, 2, 3]));
+
+// // Best solution
+
+// sumArray = (a) =>
+//   a
+//     ? a
+//         .sort((x, y) => x - y)
+//         .slice(1, -1)
+//         .reduce((s, e) => s + e, 0)
+//     : 0;
+
+// 60. You will be given an array of numbers. You have to sort the odd numbers in ascending order while leaving the even numbers at their original positions.
+
+// function sortArray(array) {
+//   const arrOdd = array.filter((n) => n % 2 !== 0).sort((a, b) => a - b);
+//   let j = 0;
+//   array = array.map((n) => {
+//     if (n % 2 !== 0) {
+//       n = arrOdd[j];
+//       j++;
+//     }
+//     return n;
+//   });
+//   return array;
+// }
+
+// console.log(sortArray([5, 3, 2, 8, 1, 4]));
+
+// // // Best solution
+
+// function sortArray(array) {
+//   const odd = array.filter((x) => x % 2).sort((a, b) => a - b);
+//   return array.map((x) => (x % 2 ? odd.shift() : x));
+// }
+
+// 61. When provided with a number between 0-9, return it in words.
+
+// Input :: 1
+
+// Output :: "One".
+
+// If your language supports it, try using a switch statement.
+
+// function switchItUp(n) {
+//   return (
+//     (n === 1 && "one") ||
+//     (n === 2 && "two") ||
+//     (n === 3 && "three") ||
+//     (n === 4 && "four") ||
+//     (n === 5 && "five") ||
+//     (n === 6 && "six") ||
+//     (n === 7 && "seven") ||
+//     (n === 8 && "eight") ||
+//     (n === 9 && "nine") ||
+//     (n === 10 && "ten")
+//   );
+// }
+
+// // // // Best solution
+
+// switchItUp = (n) =>
+//   ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"][n];
+
+// 62. Given three integers a ,b ,c, return the largest number obtained after inserting the following operators and brackets: +, *, ()
+// In other words , try every combination of a,b,c with [*+()] , and return the Maximum Obtained (Read the notes for more detail about it)
+// Example
+// With the numbers are 1, 2 and 3 , here are some ways of placing signs and brackets:
+
+// 1 * (2 + 3) = 5
+// 1 * 2 * 3 = 6
+// 1 + 2 * 3 = 7
+// (1 + 2) * 3 = 9
+// So the maximum value that you can obtain is 9.
+
+// Notes
+// The numbers are always positive.
+// The numbers are in the range (1  ≤  a, b, c  ≤  10).
+// You can use the same operation more than once.
+// It's not necessary to place all the signs and brackets.
+// Repetition in numbers may occur .
+// You cannot swap the operands. For instance, in the given example you cannot get expression (1 + 3) * 2 = 8.
+
+// function expressionMatter(a, b, c) {
+//   return [a + b + c, a * (b + c), a * b * c, a + b * c, (a + b) * c].sort((a, b) => b - a)[0];
+// }
+
+// console.log(expressionMatter(2, 1, 2));
+
+// 63.
+
+// comments = [
+//   { answersLength: 2, name: "v" },
+//   { answersLength: 1, name: "v" },
+// ];
+
+// const qwe = comments.map((comment) => ({ ...comment, answersLength: 17 }));
+
+// console.log(qwe);
+
+// 64. Given an array of integers, find the one that appears an odd number of times. There will always be only one integer that appears an odd number of times.
+
+// function findOdd(A) {
+//   const res = A.reduce((n, i) => {
+//     n[i] = n[i] ? n[i] + 1 : 1;
+//     return n;
+//   }, {});
+//   const max = Object.entries(res).filter((acc) => acc[1] % 2 != 0);
+//   return Number(max[0][0]);
+//
+
+// // // // Best solution
+
+// const findOdd = (xs) => xs.reduce((a, b) => a ^ b);
+
+// console.log(findOdd([1, 1, 2]));
+
+65. 
