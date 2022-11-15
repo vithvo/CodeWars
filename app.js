@@ -1522,4 +1522,181 @@ function findShort(s) {
 
 // console.log(findOdd([1, 1, 2]));
 
-65. 
+// 65. You ask a small girl,"How old are you?" She always says, "x years old", where x is a random number between 0 and 9. Write a program that returns the girl's age (0-9) as an integer. Assume the test input string is always a valid string. For example, the test input may be "1 year old" or "5 years old". The first character in the string is always a number.
+
+// function getAge(inputString) {
+//   return Number(inputString[0]);
+// }
+
+// // // // Best solution
+
+// function getAge(inputString) {
+// 	return parseInt(inputString);
+// }
+
+// console.log(getAge("4 yers old"));
+
+// 66. A pangram is a sentence that contains every single letter of the alphabet at least once. For example, the sentence "The quick brown fox jumps over the lazy dog" is a pangram, because it uses the letters A-Z at least once (case is irrelevant). Given a string, detect whether or not it is a pangram. Return True if it is, False if not. Ignore numbers and punctuation.
+
+// function isPangram(string) {
+//   let count = 0;
+//   const alf = [
+//     "a",
+//     "b",
+//     "c",
+//     "d",
+//     "e",
+//     "f",
+//     "g",
+//     "h",
+//     "i",
+//     "j",
+//     "k",
+//     "l",
+//     "m",
+//     "n",
+//     "o",
+//     "p",
+//     "q",
+//     "r",
+//     "s",
+//     "t",
+//     "u",
+//     "v",
+//     "w",
+//     "x",
+//     "y",
+//     "z",
+//   ];
+
+//   alf.forEach((letter, i) => {
+//     string.toLowerCase().includes(letter) && count++;
+//   });
+//   console.log(count);
+//   return count === 26 ? true : false;
+// }
+
+// console.log(isPangram("The quick brown fox jumps over the lazy dog."));
+
+// // // // Best solution
+
+// function isPangram(string) {
+//   return "abcdefghijklmnopqrstuvwxyz".split("").every((x) => string.toLowerCase().includes(x));
+// }
+
+// // // // Best solution
+
+// function isPangram(string) {
+//   return (string.match(/([a-z])(?!.*\1)/gi) || []).length === 26;
+// }
+
+// 67. Ben has a very simple idea to make some profit: he buys something and sells it again. Of course, this wouldn't give him any profit at all if he was simply to buy and sell it at the same price. Instead, he's going to buy it for the lowest possible price and sell it at the highest. Write a function that returns both the minimum and maximum number of the given list/array.
+// All arrays or lists will always have at least one element, so you don't need to check the length. Also, your function will always get an array or a list, you don't have to check for null, undefined or similar.
+
+// function minMax(arr) {
+//   arr.sort((a, b) => a - b);
+//   return [arr[0], arr[arr.length - 1]];
+// }
+
+// console.log(minMax([2, 5, 3, 5, 7, 8,33,4,6]));
+
+// // // // Best solution
+
+// function minMax(arr) {
+//   return [Math.min(...arr), Math.max(...arr)];
+// }
+
+// 68. Who remembers back to their time in the schoolyard, when girls would take a flower and tear its petals, saying each of the following phrases each time a petal was torn:
+// "I love you"
+// "a little"
+// "a lot"
+// "passionately"
+// "madly"
+// "not at all"
+
+// If there are more than 6 petals, you start over with "I love you" for 7 petals, "a little" for 8 petals and so on.
+
+// When the last petal was torn there were cries of excitement, dreams, surging thoughts and emotions.
+
+// Your goal in this kata is to determine which phrase the girls would say at the last petal for a flower of a given number of petals. The number of petals is always greater than 0.
+
+// function howMuchILoveYou(nbPetals) {
+//   const pit = {
+//     1: "I love you",
+//     2: "a little",
+//     3: "a lot",
+//     4: "passionately",
+//     5: "madly",
+//     6: "not at all",
+//   };
+
+//   return nbPetals % 6 !== 0 ? pit[nbPetals % 6] : pit[6];
+// }
+
+// console.log(howMuchILoveYou(12));
+
+// // // // Best solution
+
+// const phrases = ["I love you", "a little", "a lot", "passionately", "madly", "not at all"];
+
+// function howMuchILoveYou(n) {
+//   return phrases[(n - 1) % phrases.length];
+// }
+
+// function howMuchILoveYou(nbPetals) {
+//   let phrase = {
+//     0: "not at all",
+//     1: "I love you",
+//     2: "a little",
+//     3: "a lot",
+//     4: "passionately",
+//     5: "madly",
+//   };
+//   return phrase[nbPetals % 6];
+// }
+
+// 69. Given an array (arr) as an argument complete the function countSmileys that should return the total number of smiling faces.Rules for a smiling face:
+// Each smiley face must contain a valid pair of eyes. Eyes can be marked as : or ;
+// A smiley face can have a nose but it does not have to. Valid characters for a nose are - or ~
+// Every smiling face must have a smiling mouth that should be marked with either ) or D
+// No additional characters are allowed except for those mentioned.
+// Valid smiley face examples: :) :D ;-D :~)
+// Invalid smiley faces: ;( :> :} :]
+// Note
+// In case of an empty array return 0. You will not be tested with invalid input (input will always be an array). Order of the face (eyes, nose, mouth) elements will always be the same.
+
+// function countSmileys(arr) {
+//   const smile = [":D", ":)", ";D", ";)", ":-D", ":-)", ";-D", ";-)", ":~D", ":~)", ";~D", ";~)"];
+//   let count = 0;
+//   arr.forEach((obj) => {
+//     smile.forEach((smObj) => {
+//       if (obj === smObj) {
+//         count++;
+//       }
+//     });
+//   });
+//   return arr.length === 0 ? 0 : count;
+// }
+
+// console.log(countSmileys([":D", ":~)", ";~D", ":)"]));
+
+// // // // Best solution
+
+// function countSmileys(arr) {
+//   return arr.filter((x) => /^[:;][-~]?[)D]$/.test(x)).length;
+// }
+
+// 70. The cockroach is one of the fastest insects. Write a function which takes its speed in km per hour and returns it in cm per second, rounded down to the integer (= floored). Note! The input is a Real number (actual type is language dependent) and is >= 0. The result should be an Integer.
+
+// function cockroachSpeed(s) {
+//   console.log((s * 1000 * 100) / (60 * 60));
+//   return Math.floor((s * 1000 * 100) / (60 * 60));
+// }
+
+// console.log(cockroachSpeed(2.8408584087947224));
+
+// // // // Best solution
+
+// const cockroachSpeed = (s) => Math.floor(s / 0.036);
+
+// 71. altERnaTIng cAsE <=> ALTerNAtiNG CaSe. Define String.prototype.toAlternatingCase (or a similar function/method such as to_alternating_case/toAlternatingCase/ToAlternatingCase in your selected language; see the initial solution for details) such that each lowercase letter becomes uppercase and each uppercase letter becomes lowercase. For example: 
